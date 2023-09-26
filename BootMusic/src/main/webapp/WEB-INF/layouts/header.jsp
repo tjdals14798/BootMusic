@@ -10,24 +10,28 @@
 <body>
 	<%String id = (String)session.getAttribute("id"); %>
 	<%String nick = (String)session.getAttribute("nick"); %>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<a class="navbar-brand">Board</a>
-		</div>
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="/ext/">메인</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<%if(id != null){ %>
-					<li><a href="profil?id=<%=id%>"><%=nick%>님</a></li>
-					<li><a href="logout">로그아웃</a></li>
-				<%}else{ %>
-					<li><a href="/ext/login">로그인</a></li>
-				<%} %> 
-			</ul>
-		</div>
-	</nav>
+	<div class="container">
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="/music">BootMusic</a>
+		    </div>
+		    <ul class="nav navbar-nav">
+		      <li><a href="#">PalyList</a></li>
+		      <li><a href="#">Search</a></li>
+		      <li><a href="#">My Page</a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      <%if(id != null){ %>
+		      	<li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> 로그아웃 </a></li>
+		      	<li><a href="#"><span class="glyphicon glyphicon-user"></span> <%=nick %></a></li>
+		      <%}else{ %>
+		      	<li><a href="#"><span class="glyphicon glyphicon-user"></span> 가입하기</a></li>
+		      	<li><a href="/music/login"><span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
+		      <%} %>
+		    </ul>
+		  </div>
+		</nav>
+	</div>
 </body>
 </html>

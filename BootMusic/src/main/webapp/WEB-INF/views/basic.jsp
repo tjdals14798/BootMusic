@@ -14,21 +14,21 @@
 <link href="css/basic.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+	<%@include file="/WEB-INF/layouts/header.jsp" %>
 	<div class="container">
-		<h2>Home</h2>
 		<div class="panel panel-default">
-		<nav class="navbar navbar-inverse">
-		  <div class="container-fluid">
-		    <ul class="nav navbar-nav" style="float:right;margin:8px;">
-		      <li><input type="text" class="form-control" placeholder="검색" id="search"></li>
-		      <li><button class="btn btn-default btn-sm form-control" onclick='SearchM()'><i class="bi bi-search"></i></button></li>
-		    </ul>
-		  </div>
-		</nav>
+			<nav class="navbar navbar-inverse">
+			  <div class="container-fluid">
+			    <ul id="searchbar" class="nav navbar-nav" >
+			      <li><input type="text" class="form-control" placeholder="검색" id="search"></li>
+			      <li><button class="btn btn-default btn-sm form-control" onclick='SearchM()'><i class="bi bi-search"></i></button></li>
+			    </ul>
+			  </div>
+			</nav>
 			<div class="panel-body" id="list">
 				<table class='table table-bordered table-hover' style='table-layout: fixed'></table>
 			</div>
-			<div class="panel-footer">뿌터</div>
+			<div class="panel-footer">footer</div>
 		</div>
 	</div>
 	

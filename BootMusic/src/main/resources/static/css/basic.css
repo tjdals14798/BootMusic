@@ -3,3 +3,39 @@
 .table-bordered>tbody>tr>td{
 	vertical-align: middle;
 }
+
+#searchbar{
+	float: right;
+	margin: 8px;
+}
+
+/* ---------------------------------로그인페이지--------------------------------- */
+#full_login{
+	width: 580px;
+	height: 700px;
+	margin: 0 auto;
+	padding-top: 60px;
+}
+
+#login_title{
+	background-color: #222222;
+	margin-top: 100px;
+	color:#fff;
+	font-size:32px;
+	text-align: center;
+}
+
+#login_div{
+	width: 600px;
+	margin: auto;
+}
+
+#id_input, #sbm_input{
+	margin: auto;
+}
+
+#pw_input{
+	margin: 2px auto;
+}
+/* ---------------------------------로그인페이지--------------------------------- */
+
