@@ -41,7 +41,7 @@
 				url: "https://www.googleapis.com/youtube/v3/search",	//	요청경로
 				type: "get",	//	요청방식
 				dataType: "json",	//	서버 반환 데이터 타입
-				data:{part:'snippet', key:apikey, q:keyword, maxResults:20, type:"video", videoEmbeddable:'true'},
+				data:{part:'snippet', key:apikey, q:keyword, maxResults:5, type:"video", videoEmbeddable:'true'},
 				success: htmlView, //	result : 서버에서 반환해준 데이터
 				error: function() {
 					alert("통신실패");
@@ -51,22 +51,54 @@
 		
 		function htmlView(data) {
 			var result = "<table class='table table-bordered table-hover' style='table-layout:fixed'>";
-			result += "<tbody><tr>";
-			result += "<td style='width:140px'></td>";
-			result += "<td style='width:50%'>제목</td>";
+			result += "<tbody style='text-align:center;'><tr>";
+			result += "<td style='width:140px;'></td>";
+			result += "<td style='width:55%;'>제목</td>";
 			result += "<td>작성자</td>";
-			result += "<td>작성일</td>";
+			result += "<td style='width:100px;'>작성일</td>";
+			result += "<td style='width:80px;'></td>";
 			result += "</tr>";
 			$.each(data.items, (i, item) => {
+				var videoId = item.id.videoId;
+				var tnail = item.snippet.thumbnails.default.url;
+				var title = item.snippet.title;
+				var ctitle = item.snippet.channelTitle;
+				var pbTime = item.snippet.publishTime.substr(0,10);
 				result += "<tr>";
-				result += "<td style='vertical-align:middle'><img src='"+item.snippet.thumbnails.default.url+"'></img></td>";
-				result += "<td id='t" + i + "'>"+ item.snippet.title+"</td>";
-				result += "<td id='w" + i + "'>" + item.snippet.channelTitle + "</td>";
-				result += "<td>" + item.snippet.publishTime + "</td>";
+				result += "<td id='tn"+i+"' name='"+tnail+"'style='vertical-align:middle'><img src='"+tnail+"'></img></td>";
+				result += "<td id='tt"+i+"' name='"+title+"'>"+title+"</td>";
+				result += "<td id='ct"+i+"' name='"+ctitle+"'>"+ctitle+"</td>";
+				result += "<td id='pb"+i+"' name='"+pbTime+"'>"+pbTime+"</td>";
+				result += "<td id='vi"+i+"' name='"+videoId+"' hidden></td>";
+				result += "<td><button class='btn btn-default' id='pl_btn' onclick='addPlaylist("+i+")'>추가</button></td>";
 				result += "</tr>"; 
 			})
 			result += "</tbody></table>";
 			$("#list").html(result)
+		}
+		
+		function addPlaylist(i){
+			var vi = $("#vi"+i).attr('name'), tn = $("#tn"+i).attr('name'), tt = $("#tt"+i).attr('name'),
+			ct = $("#ct"+i).attr('name'), pb = $("#pb"+i).attr('name');
+			let user = <%=id%>
+			console.log(user);
+			//user data추가해야함
+			if (window.confirm("재생목록에 추가 하시겠습니까?")) {
+				$.ajax({
+					url: "api/adpl",
+					type: "post",
+					data: { "videoId": vi, "title": tt, "thumbnail": tn, "channelTitle": ct, "publishTime": pb, "user": <%=id%> },
+					success: function(){
+						alert("성공")
+					},
+					error: function() {
+						alert("실패")
+					}
+				})
+		    	console.log("성공");
+		    } else {
+		        console.log("취소. 변화 없음");
+		    }
 		}
 	</script>
 </body>

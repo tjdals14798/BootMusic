@@ -16,7 +16,7 @@
 <body>
 	<%@include file="/WEB-INF/layouts/header.jsp"%>
 	<div class="container">
-		<div id="login_div">
+		<div class="login_div">
 		<div class="well" id="login_title">BootMusic</div>
 			<form class="form-horizontal sm" method="post" action="login">
 				 <div class="form-group form-group-lg" id="id_input" >

@@ -9,10 +9,15 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String Home() {
-		return "basic";
+		return "search";
 	}
 	@GetMapping("/login")
 	public String Login() {
 		return "login";
 	}
+	@GetMapping("/playlist")
+	public String playlist() {
+		return "playlist";
+	}
+	
 }

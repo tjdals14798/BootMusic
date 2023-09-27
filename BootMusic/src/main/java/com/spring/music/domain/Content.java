@@ -9,8 +9,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Content {
 	
+	private String videoId;
 	private String title;
-	private String url;
+	private String thumbnail;
 	private String channelTitle;
 	private String publishTime;
+	private String user;
 }
