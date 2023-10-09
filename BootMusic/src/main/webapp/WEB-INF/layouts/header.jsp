@@ -17,16 +17,16 @@
 		      <a class="navbar-brand" href="/music">BootMusic</a>
 		    </div>
 		    <ul class="nav navbar-nav">
-		      <li><a href="#">PalyList</a></li>
-		      <li><a href="#">Search</a></li>
-		      <li><a href="#">My Page</a></li>
+		      <li><a href="/music/playlist">PalyList</a></li>
+		      <li><a href="/music">Search</a></li>
+		      <li><a href="/music/mypage">My Page</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
 		      <%if(id != null){ %>
-		      	<li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> 로그아웃 </a></li>
-		      	<li><a href="#"><span class="glyphicon glyphicon-user"></span> <%=nick %></a></li>
+		      	<li><a href="/music/logout"><span class="glyphicon glyphicon-log-in"></span> 로그아웃 </a></li>
+		      	<li><a href="/music/mypage"><span class="glyphicon glyphicon-user"></span> <%=nick %></a></li>
 		      <%}else{ %>
-		      	<li><a href="#"><span class="glyphicon glyphicon-user"></span> 가입하기</a></li>
+		      	<li><a href="/music/join"><span class="glyphicon glyphicon-user"></span> 가입하기</a></li>
 		      	<li><a href="/music/login"><span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
 		      <%} %>
 		    </ul>

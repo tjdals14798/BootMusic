@@ -19,5 +19,13 @@ public class HomeController {
 	public String playlist() {
 		return "playlist";
 	}
+	@GetMapping("/join")
+	public String join() {
+		return "join";
+	}
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "mypage";
+	}
 	
 }

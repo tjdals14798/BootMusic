@@ -80,25 +80,28 @@
 		function addPlaylist(i){
 			var vi = $("#vi"+i).attr('name'), tn = $("#tn"+i).attr('name'), tt = $("#tt"+i).attr('name'),
 			ct = $("#ct"+i).attr('name'), pb = $("#pb"+i).attr('name');
-			let user = <%=id%>
-			console.log(user);
-			//user data추가해야함
-			if (window.confirm("재생목록에 추가 하시겠습니까?")) {
-				$.ajax({
-					url: "api/adpl",
-					type: "post",
-					data: { "videoId": vi, "title": tt, "thumbnail": tn, "channelTitle": ct, "publishTime": pb, "user": <%=id%> },
-					success: function(){
-						alert("성공")
-					},
-					error: function() {
-						alert("실패")
-					}
-				})
-		    	console.log("성공");
-		    } else {
-		        console.log("취소. 변화 없음");
-		    }
+			var user = '<%=id%>';
+			console.log(user == 'null');
+			if("<%=id%>" != "null") {
+				if (window.confirm("재생목록에 추가 하시겠습니까?")) {
+					$.ajax({
+						url: "api/adpl",
+						type: "post",
+						data: { "videoId": vi, "title": tt, "thumbnail": tn, "channelTitle": ct, "publishTime": pb, "user": "<%=id%>" },
+						success: function(){
+							alert("성공")
+						},
+						error: function() {
+							alert("실패")
+						}
+					})
+			    	console.log("성공");
+			    } else {
+			        console.log("취소. 변화 없음");
+			    }		
+			} else {
+				if (window.confirm("로그인이 필요한 서비스입니다. 로그인 하시겠습니까?")) location.href = '/music/login';
+			}
 		}
 	</script>
 </body>

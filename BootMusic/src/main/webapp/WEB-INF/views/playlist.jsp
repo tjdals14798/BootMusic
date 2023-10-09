@@ -14,6 +14,7 @@
 </head>
 <body>
 <%@include file="/WEB-INF/layouts/header.jsp" %>
+플리
 	<div class="container">
 		<div class="panel panel-default">
 			<nav class="navbar navbar-inverse">

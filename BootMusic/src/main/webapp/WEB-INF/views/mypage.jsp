@@ -13,6 +13,7 @@
 <link href="css/basic.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+<%@include file="/WEB-INF/layouts/header.jsp" %>
+	마이페이지
 </body>
 </html>

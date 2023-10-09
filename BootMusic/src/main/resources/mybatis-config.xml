@@ -3,5 +3,6 @@
 <configuration>
  	<typeAliases>
  		<typeAlias alias="Member" type="com.spring.music.domain.Member"/>
+ 		<typeAlias alias="Content" type="com.spring.music.domain.Content"/>
 	</typeAliases>
 </configuration>
