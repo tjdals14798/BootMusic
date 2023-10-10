@@ -1,5 +1,7 @@
 package com.spring.music.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +13,13 @@ public class ContentService {
 	@Autowired
 	private ContentMapper mapper;
 	
-	public void add_PlayList(Content c) {
+	public void add_PlayList(Content c) { //플레이리스트 목록 추가
 		mapper.add_PlayList(c);
 	}
-	//
+	
+	public List<Content> load_PlayList(String user) { //플레이리스트 목록 추가
+		return mapper.load_PlayList(user);
+	}
+	
 	
 }

@@ -1,5 +1,7 @@
 package com.spring.music.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,5 +23,10 @@ public class RestHomeController {
 		System.out.println(content.getPublishTime());
 		System.out.println(content.getUser());
 		service.add_PlayList(content);
+	}
+	
+	@PostMapping("api/loadList")
+	public List<Content> load_PlayList(String user){
+		return service.load_PlayList(user);
 	}
 }

@@ -14,7 +14,6 @@
 </head>
 <body>
 <%@include file="/WEB-INF/layouts/header.jsp" %>
-플리
 	<div class="container">
 		<div class="panel panel-default">
 			<nav class="navbar navbar-inverse">
@@ -31,6 +30,56 @@
 			<div class="panel-footer">footer</div>
 		</div>
 	</div>
+	
+	<script>
+	//비 로그인시 화면 보여주기
+		$(document).ready(()=>{
+			loadPlayList('<%=id%>');
+		})
+	</script>
+	
+	<script>
+		function loadPlayList(user) {
+			$.ajax({
+				url: "api/loadList",	//	요청경로
+				type: "post",	//	요청방식
+				data: {"user":user},
+				dataType: "json",	//	서버 반환 데이터 타입
+				success: PlayListView,	//	result : 서버에서 반환해준 데이터
+				error: function() {
+					alert("통신실패");
+				}
+			})
+		}
+	
+		function PlayListView(data) {
+			var result = "<table class='table table-bordered table-hover' style='table-layout:fixed'>";
+			result += "<tbody style='text-align:center;'><tr>";
+			result += "<td style='width:140px;'></td>";
+			result += "<td style='width:55%;'>제목</td>";
+			result += "<td>작성자</td>";
+			result += "<td style='width:100px;'>작성일</td>";
+			result += "<td style='width:80px;'></td>";
+			result += "</tr>";
+			$.each(data, (i, item) => {
+				var videoId = item.videoId;
+				var tnail = item.thumbnail;
+				var title = item.title;
+				var ctitle = item.channelTitle;
+				var pbTime = item.publishTime;
+				result += "<tr>";
+				result += "<td id='tn"+i+"' name='"+tnail+"'style='vertical-align:middle'><img src='"+tnail+"'></img></td>";
+				result += "<td id='tt"+i+"' name='"+title+"'>"+title+"</td>";
+				result += "<td id='ct"+i+"' name='"+ctitle+"'>"+ctitle+"</td>";
+				result += "<td id='pb"+i+"' name='"+pbTime+"'>"+pbTime+"</td>";
+				result += "<td id='vi"+i+"' name='"+videoId+"' hidden></td>";
+				result += "<td><button class='btn btn-default' id='pl_btn' onclick='addPlaylist("+i+")'>삭제</button></td>";
+				result += "</tr>"; 
+			})
+			result += "</tbody></table>";
+			$("#list").html(result)
+		}
+	</script>
 
 </body>
 </html>

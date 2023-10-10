@@ -1,5 +1,7 @@
 package com.spring.music.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.spring.music.domain.Content;
@@ -8,5 +10,7 @@ import com.spring.music.domain.Content;
 public interface ContentMapper {
 
 	public void add_PlayList(Content c);
+	
+	public List<Content> load_PlayList(String user);
 	
 }

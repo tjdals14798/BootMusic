@@ -7,4 +7,8 @@
 		insert into contents(videoId, title, thumbnail, channelTitle, publishTime, user) values
 		(#{videoId},#{title},#{thumbnail},#{channelTitle},#{publishTime},#{user})
 	</insert>
+	
+	<select id="load_PlayList" parameterType="String" resultType="Content">
+		select * from contents where user = #{user};
+	</select>
 </mapper>
