@@ -34,7 +34,12 @@
 	<script>
 	//비 로그인시 화면 보여주기
 		$(document).ready(()=>{
-			loadPlayList('<%=id%>');
+			if("<%=id%>" != "null") {
+				loadPlayList('<%=id%>');
+			}else{
+				var result = "<div class='alert alert-warning'>로그인 후 이용하세요.</div>";
+				$("#list").html(result)
+			}
 		})
 	</script>
 	

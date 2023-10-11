@@ -14,10 +14,11 @@
 <link href="css/basic.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<% String jmsg = (String)request.getAttribute("jmsg"); %>
 	<%@include file="/WEB-INF/layouts/header.jsp"%>
 	<div class="container">
 		<div class="login_div">
-		<div class="well" id="login_title">BootMusic</div>
+		<div class="well" id="login_title">BootMusic Login</div>
 			<form class="form-horizontal sm" method="post" action="login">
 				 <div class="form-group form-group-lg" id="id_input" >
 				    <div>
@@ -36,6 +37,11 @@
 				  </div>
 			</form>
 			</div>
-		</div>
+	</div>
+	<script>
+		$(document).ready(()=>{
+			if('<%=jmsg%>' !== 'null') alert('<%=jmsg%>')
+		})
+	</script>
 </body>
 </html>

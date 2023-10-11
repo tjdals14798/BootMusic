@@ -8,5 +8,7 @@ import com.spring.music.domain.Member;
 public interface MemberMapper {
 
 	public Member login(Member m);
+	
+	public void join(Member m);
 
 }

@@ -6,5 +6,9 @@
 	<select id="login" resultType="Member" parameterType="Member">
 		select * from member where id=#{id} and pw=#{pw}
 	</select>
+	
+	<insert id="join" parameterType="Member">
+		insert into member value(#{id}, #{pw}, #{nick})
+	</insert>
 
 </mapper>

@@ -30,11 +30,7 @@
 	margin: auto;
 }
 
-#id_input, #sbm_input{
-	margin: auto;
-}
-
-#pw_input{
+#id_input, #sbm_input, #nick_input, #pw_input{
 	margin: 2px auto;
 }
 /* ---------------------------------로그인페이지--------------------------------- */
