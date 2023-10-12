@@ -18,8 +18,6 @@
 		    </div>
 		    <ul class="nav navbar-nav">
 		      <li><a href="/music/playlist">PalyList</a></li>
-		      <li><a href="/music">Search</a></li>
-		      <li><a href="/music/mypage">My Page</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
 		      <%if(id != null){ %>

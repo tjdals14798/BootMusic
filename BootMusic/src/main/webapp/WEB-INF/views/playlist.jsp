@@ -29,10 +29,57 @@
 			</div>
 			<div class="panel-footer">footer</div>
 		</div>
+		
+		<div id="player"></div>
+
+		<script>
+		//youtube API 불러오는 부분
+		var tag = document.createElement('script');
+		tag.src = "https://www.youtube.com/iframe_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		//플레이어 변수 설정
+		var player;
+		var videoId = 'DdF-u3fe5pg';
+		console.log("시작"+videoId);
+		function onYouTubeIframeAPIReady() {
+		  player = new YT.Player('player', {
+		    //width&height를 설정할 수 있으나, 따로 css영역으로 뺐다.
+		    videoId: videoId,
+		    events: {
+		      'onReady': onPlayerReady,//로딩중에 이벤트 실행한다
+		      'onStateChange': onPlayerStateChange//플레이어 상태 변화 시 이벤트를 실행한다.
+		    }
+		  });
+		}
+
+		function onPlayerReady(event) {
+		 //로딩된 후에 실행될 동작을 작성한다(소리 크기,동영상 속도를 미리 지정하는 것등등...)
+		  event.target.playVideo();//자동재생
+		 
+		}
+
+		var playerState;
+		function onPlayerStateChange(event) {
+			if (event.data == YT.PlayerState.ENDED) {
+				player.loadVideoById('_Hu4GYtye5U');
+				event.target.playVideo();//자동재생
+			}
+			/* playerState = event.data == YT.PlayerState.ENDED ? '종료됨' :
+					event.data == YT.PlayerState.PLAYING ? '재생 중' :
+					event.data == YT.PlayerState.PAUSED ? '일시중지 됨' :
+					event.data == YT.PlayerState.BUFFERING ? '버퍼링 중' :
+					event.data == YT.PlayerState.CUED ? '재생준비 완료됨' :
+					event.data == -1 ? '시작되지 않음' : '예외';
+
+			console.log('onPlayerStateChange 실행: ' + playerState); */
+		}
+		</script>
+		
 	</div>
 	
 	<script>
-	//비 로그인시 화면 보여주기
 		$(document).ready(()=>{
 			if("<%=id%>" != "null") {
 				loadPlayList('<%=id%>');

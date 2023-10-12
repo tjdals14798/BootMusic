@@ -67,7 +67,7 @@
 				var title = item.snippet.title;
 				var ctitle = item.snippet.channelTitle;
 				var pbTime = item.snippet.publishedAt.substr(0,10);
-				result += "<tr>";
+				result += "<tr onclick='idtoname("+i+")'>";
 				result += "<td id='tn"+i+"' name='"+tnail+"'style='vertical-align:middle'><img src='"+tnail+"'></img></td>";
 				result += "<td id='tt"+i+"' name='"+title+"'>"+title+"</td>";
 				result += "<td id='ct"+i+"' name='"+ctitle+"'>"+ctitle+"</td>";
@@ -79,7 +79,11 @@
 			result += "</tbody></table>";
 			$("#list").html(result)
 		}
-	
+		function idtoname(i){
+			var num = $('#vi'+i).attr('name');
+			console.log(num);
+		}
+		
 		function SearchM() {
 			var name = $('#search').val();
 			let apikey = "AIzaSyCSNiWe_-oP1a3hDT0Y8wImEyLxVOQL1sU";
