@@ -24,6 +24,7 @@
 			    </ul>
 			  </div>
 			</nav>
+			<button class="btn btn-default" onclick="testtt()">테스트버튼</button>
 			<div class="panel-body" id="list">
 				<table class='table table-bordered table-hover' style='table-layout: fixed'></table>
 			</div>
@@ -34,19 +35,25 @@
 
 		<script>
 		//youtube API 불러오는 부분
-		var tag = document.createElement('script');
-		tag.src = "https://www.youtube.com/iframe_api";
-		var firstScriptTag = document.getElementsByTagName('script')[0];
-		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+		var vIdarr = [];
+		var idx;
+		function testtt(num){
+			idx = num;
+			var tbl_len = $("#pl_tbl >tbody tr").length;
+			for(var i = 0; i < tbl_len; i++) vIdarr.push($("#vi"+i).attr('name'));
+			
+			var tag = document.createElement('script');
+			tag.src = "https://www.youtube.com/iframe_api";
+			var firstScriptTag = document.getElementsByTagName('script')[0];
+			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+		}
+			
 
 		//플레이어 변수 설정
 		var player;
-		var videoId = 'DdF-u3fe5pg';
-		console.log("시작"+videoId);
 		function onYouTubeIframeAPIReady() {
 		  player = new YT.Player('player', {
-		    //width&height를 설정할 수 있으나, 따로 css영역으로 뺐다.
-		    videoId: videoId,
+		    videoId: vIdarr[idx],
 		    events: {
 		      'onReady': onPlayerReady,//로딩중에 이벤트 실행한다
 		      'onStateChange': onPlayerStateChange//플레이어 상태 변화 시 이벤트를 실행한다.
@@ -63,7 +70,9 @@
 		var playerState;
 		function onPlayerStateChange(event) {
 			if (event.data == YT.PlayerState.ENDED) {
-				player.loadVideoById('_Hu4GYtye5U');
+				//인덱스 미만이면 다음노래 재생
+				player.loadVideoById(vIdarr[idx+1]);
+				//인덱스 초과면 플레이어 종료
 				event.target.playVideo();//자동재생
 			}
 			/* playerState = event.data == YT.PlayerState.ENDED ? '종료됨' :
@@ -103,23 +112,23 @@
 				}
 			})
 		}
-	
+	var tbl_len;
 		function PlayListView(data) {
-			var result = "<table class='table table-bordered table-hover' style='table-layout:fixed'>";
-			result += "<tbody style='text-align:center;'><tr>";
-			result += "<td style='width:140px;'></td>";
-			result += "<td style='width:55%;'>제목</td>";
-			result += "<td>작성자</td>";
-			result += "<td style='width:100px;'>작성일</td>";
-			result += "<td style='width:80px;'></td>";
-			result += "</tr>";
+			var result = "<table id='pl_tbl' class='table table-bordered table-hover' style='table-layout:fixed'>";
+			result += "<thead style='text-align:center;'><tr>";
+			result += "<th style='width:140px;'></th>";
+			result += "<th style='width:55%;'>제목</th>";
+			result += "<th>작성자</th>";
+			result += "<th style='width:100px;'>작성일</th>";
+			result += "<th style='width:80px;'></th>";
+			result += "</tr></thead><tbody>";
 			$.each(data, (i, item) => {
 				var videoId = item.videoId;
 				var tnail = item.thumbnail;
 				var title = item.title;
 				var ctitle = item.channelTitle;
 				var pbTime = item.publishTime;
-				result += "<tr>";
+				result += "<tr onclick='testtt("+i+")'>";
 				result += "<td id='tn"+i+"' name='"+tnail+"'style='vertical-align:middle'><img src='"+tnail+"'></img></td>";
 				result += "<td id='tt"+i+"' name='"+title+"'>"+title+"</td>";
 				result += "<td id='ct"+i+"' name='"+ctitle+"'>"+ctitle+"</td>";
@@ -131,7 +140,7 @@
 			result += "</tbody></table>";
 			$("#list").html(result)
 		}
-	</script>
 
+	</script>
 </body>
 </html>

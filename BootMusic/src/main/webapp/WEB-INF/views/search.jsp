@@ -92,7 +92,7 @@
 				url: "https://www.googleapis.com/youtube/v3/search",	//	요청경로
 				type: "get",
 				dataType: "json",
-				data:{part:'snippet', key:apikey, q:keyword, maxResults:5, type:"video", videoEmbeddable:'true'},
+				data:{part:'snippet', key:apikey, q:keyword, maxResults:10, type:"video", videoEmbeddable:'true'},
 				success: htmlView,
 				error: function() {
 					alert("통신실패");
@@ -132,7 +132,7 @@
 			var vi = $("#vi"+i).attr('name'), tn = $("#tn"+i).attr('name'), tt = $("#tt"+i).attr('name'),
 			ct = $("#ct"+i).attr('name'), pb = $("#pb"+i).attr('name');
 			var user = '<%=id%>';
-			console.log(user == 'null');
+			
 			if("<%=id%>" != "null") {
 				if (window.confirm("재생목록에 추가 하시겠습니까?")) {
 					$.ajax({
