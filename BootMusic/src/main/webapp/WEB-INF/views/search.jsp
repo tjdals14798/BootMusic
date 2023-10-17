@@ -36,9 +36,9 @@
 		$(document).ready(()=>{
 			ViewM();
 		})
+		const apikey = "AIzaSyCSNiWe_-oP1a3hDT0Y8wImEyLxVOQL1sU";
 		
 		function ViewM() {
-			let apikey = "AIzaSyCSNiWe_-oP1a3hDT0Y8wImEyLxVOQL1sU";
 			let keyword = "PL4fGSI1pDJn6jXS_Tv_N9B8Z0HTRVJE0m";
 			$.ajax({
 				url: "https://youtube.googleapis.com/youtube/v3/playlistItems",	//	요청경로
@@ -86,7 +86,6 @@
 		
 		function SearchM() {
 			var name = $('#search').val();
-			let apikey = "AIzaSyCSNiWe_-oP1a3hDT0Y8wImEyLxVOQL1sU";
 			let keyword = name;
 			$.ajax({
 				url: "https://www.googleapis.com/youtube/v3/search",	//	요청경로
