@@ -16,17 +16,16 @@ public class RestHomeController {
 
 	@PostMapping("api/adpl")
 	public void add_PlayList(Content content) {
-		System.out.println(content.getVideoId());
-		System.out.println(content.getTitle());
-		System.out.println(content.getThumbnail());
-		System.out.println(content.getChannelTitle());
-		System.out.println(content.getPublishTime());
-		System.out.println(content.getUser());
 		service.add_PlayList(content);
 	}
 	
 	@PostMapping("api/loadList")
 	public List<Content> load_PlayList(String user){
 		return service.load_PlayList(user);
+	}
+	
+	@PostMapping("api/delContent")
+	public void del_PlayList(String videoId) {
+		service.del_Content(videoId);
 	}
 }

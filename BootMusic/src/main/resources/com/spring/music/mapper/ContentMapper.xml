@@ -11,4 +11,8 @@
 	<select id="load_PlayList" parameterType="String" resultType="Content">
 		select * from contents where user = #{user};
 	</select>
+	
+	<delete id="del_Content" parameterType="String">
+		delete from contents where videoId = #{videoId};
+	</delete>
 </mapper>

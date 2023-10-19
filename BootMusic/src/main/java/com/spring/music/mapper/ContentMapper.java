@@ -11,6 +11,8 @@ public interface ContentMapper {
 
 	public void add_PlayList(Content c);
 	
+	public void del_Content(String videoId);
+	
 	public List<Content> load_PlayList(String user);
 	
 }
