@@ -12,16 +12,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link href="css/basic.css" rel="stylesheet" type="text/css">
 </head>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <body>
 <%@include file="/WEB-INF/layouts/header.jsp" %>
 	<div class="container">
 		<div class="panel panel-default">
 			<nav class="navbar navbar-inverse">
 			  <div class="container-fluid row" style="padding-top: 4px; margin-left: 10%;">
-			  	<div class="well well-sm col-sm-8" style="margin: auto;"><b id="playing_tt">재생중인 노래 없음</b></div>
+			  	<div class="well well-sm col-sm-8" style="margin: auto;"><b id="playing_tt">재생중인 노래 없음</b>
+			  	</div>
 			    <ul id="searchbar" class="nav navbar-nav" >
-			      <li><button>다음곡</button></li>
-			      <li><button>일시정지</button></li>
+			      <li><button id="li_play_btn" onclick="pauseMusic()"><span class="glyphicon glyphicon-play"></span></button></li>
+			      <li><button id="li_mute_btn" onclick="muteMusic()"><span class="glyphicon glyphicon-volume-off"></span></button></li>
+			      <li><input style="margin-top:4px; accent-color:white;" type="range" min="0" max="20" id="li_sound_bar" onchange="soundMusic()"></li>
 			    </ul>
 			  </div>
 			</nav>
@@ -32,7 +35,7 @@
 		</div>
 		
 		<button class="btn btn-default" onclick='goView()'>영상보기</button>
-		<div class="container" id = if_view style="text-align: center;">
+		<div class="container" id =if_view style="text-align: center;">
 			<div id="player"></div>
 		</div>
 	</div>
@@ -108,9 +111,35 @@
 		}
 	}
 	// 노래가 끝나면 다음노래 재생 마지막 곡이면 처음으로 돌아감
-		
-	//player.pauseVideo() 일시정지
-	//player.playVideo() 재생
+
+	// 음악 일시정지
+	function pauseMusic(){
+		if(player.getPlayerState() == 1){
+			$("#li_play_btn").html("<span class='glyphicon glyphicon-play'></span>");
+			player.pauseVideo();			
+		}else if(player.getPlayerState() == 2){
+			$("#li_play_btn").html("<span class='glyphicon glyphicon-stop'></span>");
+			player.playVideo();
+		}
+	}
+	// 음악 일시정지
+	
+	//음악 음소거
+	function muteMusic(){
+		if(player.isMuted()){
+			$("#li_mute_btn").html("<span class='glyphicon glyphicon-volume-off'>");
+			player.unMute();
+		}else{
+			$("#li_mute_btn").html("<span class='glyphicon glyphicon-volume-up'>");
+			player.mute();
+		}
+	}
+	//음악 음소거
+	
+	function soundMusic(){
+		var sound = $("#li_sound_bar").val() * 5;
+		player.setVolume(sound);
+	}
 
 	function loadPlayList(user) {
 		$.ajax({
